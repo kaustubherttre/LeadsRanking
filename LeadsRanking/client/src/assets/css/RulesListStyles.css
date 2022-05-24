@@ -1,0 +1,121 @@
+.RulesListTable table{
+  font-family: 'Roboto';
+    border-collapse: separate;
+    width: 100%;
+    border: none;
+    border-spacing: 0px 15px;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.RulesListTable td {
+  padding: 8px;
+  color: #253858;
+  padding: 8px 8px 8px 25px;
+}
+
+/* .RulesListTable tr:nth-child(odd){background-color: #f2f2f2;} */
+
+.RulesListTable tr{  
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  box-shadow: 0 1px 15px #0000000a, 0 1px 6px #0000000a;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.RulesListTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left:25px;
+  text-align: left;
+  background-color: #1b2e41;
+  color: white;
+}
+
+.RulesListTable td:first-child,
+.RulesListTable th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.RulesListTable td:last-child,
+.RulesListTable th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.search-container{
+  border: none;
+    
+    margin-top: 9px;
+    padding: 3px 20px 20px;
+    box-shadow: 0 1px 15px #0000000a, 0 1px 6px #0000000a;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.search-container2{
+  box-shadow: none;
+    background-color: transparent;
+}
+.search-container2 input{
+  border: 1px solid #f4f6f8;
+    border-radius: 4px 0px 0px 4px;
+    color: #2A3F54;
+    font-size: 13px;
+    height: 35px;
+    border-color: #ccc;
+    margin-top: 5px;
+    background-color: #f4f6f8;
+    padding-left: 10px;
+    width: 69%;
+}
+
+.search-container .container-1 ,.search-container .container-2 {
+  display: flex;
+  padding: 7px;
+}
+
+.search-container .container-1 div , .search-container .container-2 div{
+  justify-content: center;
+}
+
+.search-container .container-1 .container-1-box input{
+  border: 1px solid #2A3F54;
+    border-radius: 4px;
+    color: #2A3F54;
+    font-size: 13px;
+    height: 35px;
+    border-color: #ccc;
+    margin-top: 5px;
+    background-color: #fff;
+    padding-left: 10px;
+    width: 100%;
+}
+.search-container .container-2 select{
+  background-color: #ffffff;
+    border: 1px solid #2A3F54;
+    border-radius: 4px;
+    font-size: 13px;
+    border-color: #ccc;
+    color: #2A3F54;
+    height: 35px;
+    margin-top: 5px;
+    padding-left: 10px;
+    width: 95%;
+}
+
+.search-container .container-2 input{
+  border: hidden;
+  border-radius: 5px;
+}
+
+.search-container .container-2 div{
+  flex-basis: 33%;
+}
+.search-container .container-1 .container-1-box{
+  flex-basis: 50%;
+}

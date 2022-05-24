@@ -1,0 +1,73 @@
+@import './variables.scss';
+
+.form-groups-inline {
+    font-family: $form-font-family;
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+        margin-top: 10px;
+    }
+
+    .form-field {
+        width: 35%;
+    }
+}
+
+.upload-panel {
+    .form-field {
+        width: 100%;
+    }
+}
+
+.form-field {
+    margin-right: 5%;
+    margin-top: 5px;
+
+    input {
+        border: 1px solid $form-border-color;
+        border-radius: 4px;
+        color: $form-field-color;
+        font-size: 13px;
+        height: 35px;
+        border-color: #ccc;
+        margin-top: 5px;
+        background-color: #f4f6f8;
+        padding-left: 10px;
+        width: 100%;
+    }
+
+    select {
+        background-color: #f4f6f8;
+        border: 1px solid $form-border-color;
+        border-radius: 4px;
+        font-size: 13px;
+        border-color: #ccc;
+        color: $form-field-color;
+        height: 35px;
+        margin-top: 5px;
+        padding-left: 10px;
+        width: 100%;
+    }
+
+    .error {
+        border-color: red;
+    }
+
+    .readOnly {
+        background-color: #eee;
+        border: 1px solid #c2c2c2;
+    }
+}
+
+.form-error {
+    color: red;
+    font-family: $form-font-family;
+    font-size: 16px;
+}
+
+.booking-incentive-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

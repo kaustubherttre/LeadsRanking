@@ -1,0 +1,13 @@
+/node_modules
+/logs
+client/node_modules
+#client/build
+client/package-lock.json
+#client/src/config.jsx
+/package-lock.json
+#env_config.js
+dockerfile
+client/public/SampleExcelfiles/
+client/debug.log
+client/build/SampleExcelfiles/
+download/

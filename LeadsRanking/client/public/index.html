@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PW5K');</script>
+  <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!--
+            manifest.json provides metadata used when your web app is added to the
+            homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+        -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="%PUBLIC_URL%/apple-icon.png"
+    />
+    <!--
+            Notice the use of %PUBLIC_URL% in the tags above.
+            It will be replaced with the URL of the `public` folder during the build.
+            Only files inside the `public` folder can be referenced from the HTML.
+
+            Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+            work correctly both with client-side routing and a non-root public URL.
+            Learn how to configure a non-root public URL by running `npm run build`.
+        -->
+
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <!-- <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    /> -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script>document.write('<link href="https://static.pbcdn.in/myaccount-cdn/css/qa/Modal.css?v=' + Date.now() + '" rel="stylesheet" />');</script>
+    <!-- <link
+    rel="stylesheet"
+    href="https://static.pbcdn.in/myaccount-cdn/css/qa/Modal.css?v=1"
+  /> -->
+    <title>Matrix Support</title>
+  </head>
+  <body>
+  <!-- Google Tag Manager (noscript) -->
+    <noscript> <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW5K"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      You need to enable JavaScript to run this app. </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    <h1 id="elem" style="display:none">Hello from the script!</h1>
+
+    <div id="root"></div>
+    <!--
+            This HTML file is a template.
+            If you open it directly in the browser, you will see an empty page.
+
+            You can add webfonts, meta tags, or analytics to this file.
+            The build step will place the bundled scripts into the <body> tag.
+
+            To begin the development, run `npm start` or `yarn start`.
+            To create a production bundle, use `npm run build` or `yarn build`.
+        -->
+  </body>
+  <div id="central-login-module-content"></div>
+
+  <script>document.write('<script src="https://static.pbcdn.in/myaccount-cdn/js/qa/Modal.js?v=' + Date.now() + '" type="text/javascript" charset="utf-8" async defer><\/script>');</script>
+  <!-- <script src="https://static.pbcdn.in/myaccount-cdn/js/qa/Modal.js" type="text/javascript" charset="utf-8" async defer></script> -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script type="text/JavaScript">
+  function centralLoginOnSuccess(){
+            let event = new Event("centralLogin", {bubbles: true}); // (2)
+            elem.dispatchEvent(event);
+        }
+        var dataLayer = window.dataLayer || [];
+
+  document.addEventListener("onClickCheckCallLog", (e) => { // arrow function
+    console.log('///////////////////////////////onClickCheckCallLog')
+    dataLayer.push({
+  'event': 'eventTracking',
+  'eventCategory': 'VerifyYourAdvisor',
+  'eventAction': 'click',
+  'eventLabel': 'view-call-logs',
+  'eventValue': 'user click on button',
+  })        
+  });
+  document.addEventListener("onUserLoggedIn", (e) => { // arrow function
+    console.log('///////////////////////////////onUserLoggedIn')
+    dataLayer.push({
+  'event': 'eventTracking',
+  'eventCategory': 'VerifyYourAdvisor',
+  'eventAction': 'Loggedin',
+  'eventLabel':  e.detail.CustomerId,
+  'eventValue': 'user Logged in',
+  'customerId' : e.detail.CustomerId,
+  })        
+  });
+  document.addEventListener("onCallLogVisible", (e) => { // arrow function
+    console.log('///////////////////////////////onCallLogVisible')
+    dataLayer.push({
+  'event': 'eventTracking',
+  'eventCategory': 'VerifyYourAdvisor',
+  'eventAction': 'call-logs-visible',
+  'eventLabel': e.detail.CustomerId,
+  'eventValue': 'Call Logs visible',
+  'customerId' : e.detail.CustomerId,
+  })        
+  });
+  document.addEventListener("onCallLogNotVisible", (e) => { // arrow function
+    console.log('///////////////////////////////onCallLogNotVisible')
+    dataLayer.push({
+  'event': 'eventTracking',
+  'eventCategory': 'VerifyYourAdvisor',
+  'eventAction': 'no-call-logs',
+  'eventLabel': e.detail.CustomerId,
+  'eventValue': 'Call Logs not visible',
+  'customerId' : e.detail.CustomerId,
+  })        
+  });
+  </script>
+</html>

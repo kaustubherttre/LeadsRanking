@@ -1,0 +1,59 @@
+{
+	"_id": "614d944b2288560844bfb4ab",
+	"name": "LeadRanking",
+	"description": "lead ranking allocation",
+	"criteria": "leadallocation",
+	"searchKeys": [
+		{
+			"key": "Product",
+			"value": 2
+		}
+	],
+	"isActive": true,
+	"decisions": [
+		{
+			"conditions": {
+				"all": [
+					{
+						"any": [
+							{
+								"fact": "Utm_source",
+								"operator": "equal",
+								"value": "direct"
+							},
+							{
+								"fact": "LeadSource",
+								"operator": "equal",
+								"value": "PB"
+							}
+						]
+					},
+					{
+						"fact": "Age",
+						"operator": "lessThan",
+						"value": 40
+					},
+					{
+						"fact": "Age",
+						"operator": "greaterThan",
+						"value": 20
+					},
+					{
+						"fact": "AnnualIncome",
+						"operator": "lessThan",
+						"value": 600000
+					}
+				]
+			},
+			"event": {
+				"type": "Rank-1",
+				"params": {
+					"description": "test",
+					"operationType": "",
+					"LeadRank": "1"
+				}
+			}
+		}
+	],
+	"priority": 1
+}

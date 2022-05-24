@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+.tab-container {
+    border-bottom: 2px solid #ccc;
+    display: flex;
+    margin-top: 20px;
+    padding: {
+        left: 40px;
+    };
+
+    div {
+        cursor: pointer;
+        color: $page-title-color;
+        font-family: $tab-font-family;
+        margin-right: 20px;
+        padding: {
+            bottom: 2px;
+            left: 10px;
+            right: 10px;
+        }
+
+        &.active {
+            background: transparent;
+            border-bottom: 3px solid $border-left-color;
+            color: $title-bg-clr;
+            font-weight: bold;
+        }
+    }
+}
+
+.tab-page-container {
+    margin-top: 20px;
+}
