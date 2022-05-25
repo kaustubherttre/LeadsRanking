@@ -19,5 +19,7 @@ router.post("/toggleFactIsActive/", controller.toggleFactIsActive);
 router.get("/leadRankingAllocation", controller.processLeadRankingAllocation);
 router.get("/processGroupAllocation", controller.processGroupAllocation);
 router.get("/getLeadsData", controller.getLeadsData);
+router.post("/saveLeadInfo", controller.saveLeadInfo);
+
 
 module.exports = router;

@@ -89,6 +89,28 @@ async function SaveCondition(req, res) {
   }
 }
 
+async function saveLeadInfo(req, res) {
+  try {
+    let RuleEngineDB = ruleenginedb;
+    let leadInfo = req.body
+    console.log("leadInfo", leadInfo)
+    let result = RuleEngineDB.collection("LeadRankInfo").insertMany(leadInfo)
+    res.send({
+      status: 200,
+      result : result,
+      message: "Success"
+
+    })
+
+
+  }
+  catch (err) {
+
+    console.log(err)
+
+  }
+}
+
 async function SaveRule(req, res) {
   try {
 
@@ -138,6 +160,8 @@ async function SaveRule(req, res) {
     // await collection.close();
   }
 }
+
+
 
 async function factCheck(req, res) {
   try {
@@ -271,17 +295,17 @@ async function resolve(body) {
             isActive: true
           })
           .toArray();
-  
+
       } else {
         rules = await RuleEngineDB.collection("RulesHackathon")
           .find({
             isActive: true
           })
-          .toArray();        
+          .toArray();
       }
 
       console.log('len', rules.length);
-      
+
       // adding rules to the engine
       rules.forEach(rule => {
         let ruleName = rule.name;
@@ -340,10 +364,10 @@ async function resolve(body) {
         });
       return result;
     }
-   
+
 
   } catch (err) {
-console.log(err);
+    console.log(err);
     errorStatus = 1;
     return { errorStatus, err };
   }
@@ -580,10 +604,10 @@ async function toggleFactIsActive(req, res) {
 async function processLeadRankingAllocation(req, res) {
   try {
     let RuleEngineDB = ruleenginedb;
-    
+
     let Leads = await RuleEngineDB.collection('LeadData').
-                  find({}).
-                  toArray();
+      find({}).
+      toArray();
 
     for (let i = 0; i < Leads.length; i++) {
       let lead = Leads[i];
@@ -598,36 +622,36 @@ async function processLeadRankingAllocation(req, res) {
 
       let facts = lead;
 
-      let body = { facts, searchKeys, criteria: 'leadallocation'};
-      
+      let body = { facts, searchKeys, criteria: 'leadallocation' };
+
       let resolveResult = await resolve(body);
       let event = {}, params = null, events = [];
-      if(resolveResult !== null) {
+      if (resolveResult !== null) {
         events = resolveResult.events;
       }
-       
-      if(events.length > 0) {
+
+      if (events.length > 0) {
         event = events[0];
         params = event.params;
       }
 
-      if( params !== null && params.LeadRank !== undefined) {
+      if (params !== null && params.LeadRank !== undefined) {
 
         let res = await RuleEngineDB.collection('LeadData').
-                    updateOne(
-                      { LeadID: leadId },
-                      { $set : { LeadRank: parseInt(params.LeadRank) }}
-                    );
-      
+          updateOne(
+            { LeadID: leadId },
+            { $set: { LeadRank: parseInt(params.LeadRank) } }
+          );
+
       }
     }
 
     let updatedLeads = await RuleEngineDB.collection('LeadData').
-                  find({}).
-                  toArray();
+      find({}).
+      toArray();
 
-    
-     
+
+
     res.status(200).json({
       status: 200,
       message: 'success',
@@ -635,7 +659,7 @@ async function processLeadRankingAllocation(req, res) {
     });
 
   } catch (err) {
-console.log(err);
+    console.log(err);
     res.status(500).json({
       status: 500,
       message: err
@@ -648,10 +672,10 @@ console.log(err);
 async function processGroupAllocation(req, res) {
   try {
     let RuleEngineDB = ruleenginedb;
-    
+
     let Leads = await RuleEngineDB.collection('LeadData').
-                  find({}).
-                  toArray();
+      find({}).
+      toArray();
 
     for (let i = 0; i < Leads.length; i++) {
       let lead = Leads[i];
@@ -665,40 +689,40 @@ async function processGroupAllocation(req, res) {
       ];
 
       let facts = lead;
-      
-      let body = { facts, searchKeys, criteria: 'groupallocation'};
+
+      let body = { facts, searchKeys, criteria: 'groupallocation' };
 
       let resolveResult = await resolve(body);
       let event = {}, params = null, events = [];
-      if(resolveResult !== null) {
+      if (resolveResult !== null) {
         events = resolveResult.events;
       }
 
-      if(events.length > 0) {
+      if (events.length > 0) {
         event = events[0];
         params = event.params;
       }
 
-      if( params !== null && params.Group !== undefined) {
+      if (params !== null && params.Group !== undefined) {
         let obj = {};
 
-        for(key in params) {
+        for (key in params) {
           obj[key] = params[key];
         }
 
         let res = await RuleEngineDB.collection('LeadData').
-                    updateOne( 
-                      { LeadID: leadId },
-                      { $set : obj }
-                    );
-      
+          updateOne(
+            { LeadID: leadId },
+            { $set: obj }
+          );
+
       }
     }
 
     let updatedLeads = await RuleEngineDB.collection('LeadData').
-                        find({}).
-                        toArray();
-     
+      find({}).
+      toArray();
+
     res.status(200).json({
       status: 200,
       message: 'success',
@@ -718,11 +742,11 @@ async function processGroupAllocation(req, res) {
 async function getLeadsData(req, res) {
   try {
     let RuleEngineDB = ruleenginedb;
-   
+
     let Leads = await RuleEngineDB.collection('LeadData')
       .find({})
       .toArray();
-      
+
 
     res.status(200).json({
       status: 200,
@@ -754,8 +778,9 @@ module.exports = {
   getFactsData: getFactsData,
   editRuleDetails: editRuleDetails,
   resolve: resolve,
-  toggleFactIsActive : toggleFactIsActive,
+  toggleFactIsActive: toggleFactIsActive,
   processLeadRankingAllocation: processLeadRankingAllocation,
   processGroupAllocation: processGroupAllocation,
-  getLeadsData: getLeadsData
+  getLeadsData: getLeadsData,
+  saveLeadInfo:saveLeadInfo
 };

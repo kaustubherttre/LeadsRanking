@@ -1,8 +1,9 @@
 import React, { Component, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-
+import axios from 'axios'
 import Axios from 'axios';
 import { Button } from 'reactstrap';
+import SweetAlert from "react-bootstrap-sweetalert";
 
 
 const GroupAllocation = (props) => {
@@ -57,6 +58,11 @@ const GroupAllocation = (props) => {
 
 
     const sendLeadInfo = (unrankedLeads) => {
+
+
+
+        const URL = `http://localhost:8080/api/v1/ruleengine/saveLeadInfo`;
+
         const data = unrankedLeads.map((item) => {
             return {
                 leadid: item.leadid,
@@ -70,8 +76,18 @@ const GroupAllocation = (props) => {
             }
         })
 
-        return data
+        let result = axios.post(URL, data).then((res) => console.log(res))
 
+        return result
+
+    }
+    const handleClose = () =>{
+        console.log("close")
+    }
+
+    const handleClick = () => {
+        sendLeadInfo(unrankedLeads) 
+        return (alert("File Uploaded"))
     }
 
     const handleOverFlow = (e) => {
@@ -81,15 +97,13 @@ const GroupAllocation = (props) => {
 
     const setTime = (e) => {
         e.preventDefault()
-       
-            setOverFlowStartTime(e.target.value)
-       
+
+        setOverFlowStartTime(e.target.value)
+
 
     }
 
-    console.log("send", sendLeadInfo(unrankedLeads))
 
-    console.log("ranked", unrankedLeads)
 
 
 
@@ -116,27 +130,20 @@ const GroupAllocation = (props) => {
                     <input type="time" onChange={setTime} />
                 </div>}
 
-                {rankAllocated && <Button color="secondary" style={{ float: "right" }}>Upload Lead Data</Button>}
+                {rankAllocated && <Button color="secondary" onClick={handleClick} style={{ float: "right" }}>Upload Lead Data</Button>}
             </div>
             <br />
 
 
-            {rankAllocated == false ? <DataTable
+            <DataTable
                 columns={columns}
-                data={unRankedLeads}
+                data={rankAllocated == false ? unRankedLeads: unrankedLeads}
                 pagination
                 striped
                 highlightOnHover
                 progressPending={unrankedLeadsloading}
                 title={"Group Allocation"}
-            /> : <DataTable
-                columns={columns}
-                data={unrankedLeads}
-                pagination
-                striped
-                highlightOnHover
-                progressPending={unrankedLeadsloading}
-                title={"Group Allocation"} />}
+            /> 
 
         </>
     )
